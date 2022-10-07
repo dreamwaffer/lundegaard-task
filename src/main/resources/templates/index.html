@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact us</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/styles/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+    <h1>Contact us</h1>
+    <div th:if="${request == null}">
+        <form th:action="@{/request}" th:method="post">
+            <div class="form-group">
+                <label for="type">Kind of request</label>
+                <select id="type" name="type" class="form-control">
+                    <option th:each="item : ${requestTypes}" th:value="${item.getType()}"
+                            th:text="${item.getType()}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="policyNumber">Policy number</label>
+                <input type="text" id="policyNumber" name="policyNumber" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="firstName">Name</label>
+                <input type="text" id="firstName" name="firstName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" name="surname" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="text">Your request</label>
+                <textarea id="text" name="text" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary float-right">SEND REQUEST</button>
+        </form>
+    </div>
+
+    <div th:unless="${request == null}">
+        <form th:action="@{/request}" th:method="post">
+            <ul class="error">
+                <li th:each="error:${errorMessages}" th:text="${error}"></li>
+            </ul>
+            <div class="form-group">
+                <label for="type">Kind of request</label>
+                <select id="type" name="type" class="form-control">
+                    <option th:each="item : ${requestTypes}" th:value="${item.getType()}"
+                            th:text="${item.getType()}" th:selected="${item.getType()==request.getType()}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="policyNumber">Policy number</label>
+                <input type="text" id="policyNumber" name="policyNumber"
+                       th:value="${request.getPolicyNumber()}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="firstName">Name</label>
+                <input type="text" id="firstName" name="firstName"
+                       th:value="${request.getFirstName()}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" name="surname"
+                       th:value="${request.getSurname()}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="text">Your request</label>
+                <textarea id="text" name="text" th:text="${request.getText()}"
+                          class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary float-right">SEND REQUEST</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
