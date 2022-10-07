@@ -10,5 +10,4 @@ public class InterviewTaskApplication {
         SpringApplication.run(InterviewTaskApplication.class, args);
 
     }
-
 }

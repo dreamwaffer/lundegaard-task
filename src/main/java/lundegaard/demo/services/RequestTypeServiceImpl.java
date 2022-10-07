@@ -3,7 +3,6 @@ package lundegaard.demo.services;
 import lundegaard.demo.models.RequestType;
 import lundegaard.demo.repositories.RequestTypeRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

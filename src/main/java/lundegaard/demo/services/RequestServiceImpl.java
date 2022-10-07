@@ -3,15 +3,13 @@ package lundegaard.demo.services;
 import lundegaard.demo.models.Request;
 import lundegaard.demo.repositories.RequestRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Service
 public class RequestServiceImpl implements RequestService {
 
-    public final int REQUEST_TEXT_LENGTH = 5;
+    public final int REQUEST_TEXT_LENGTH = 5000;
 
     private RequestRepository requestRepository;
     private InputCheckService inputCheckService;
